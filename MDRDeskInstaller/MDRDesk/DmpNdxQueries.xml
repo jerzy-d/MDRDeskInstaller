@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>DmpNdxQueries</name></assembly>
+<members>
+<member name="T:DmpNdxQueries.Auxiliaries.KvStringAddressComparer">
+<summary>
+ KeyValuePair&lt;string,address&gt;&gt; comparer.
+</summary>
+</member>
+<member name="M:DmpNdxQueries.Types.tryGetFieldType(Microsoft.Diagnostics.Runtime.ClrHeap,System.UInt64,Microsoft.Diagnostics.Runtime.ClrInstanceField)">
+
+</member>
+<member name="M:DmpNdxQueries.Types.isTypeUnknown(Microsoft.Diagnostics.Runtime.ClrType)">
+<summary>
+ Used when we looking for clearly defined type.
+</summary>
+</member>
+<member name="M:DmpNdxQueries.Types.isTypeNameVague(System.String)">
+ <summary>
+ Some reference types have names which might require further investigation.
+ </summary>
+ <param name="name">Type name.</param>
+</member>
+<member name="M:DmpNdxQueries.Types.isErrorType(Microsoft.Diagnostics.Runtime.ClrType)">
+<summary>
+ We get get this one, in good heaps. Why?
+</summary>
+</member>
+<member name="M:DmpNdxQueries.FQry.getInterfaceObjects(Microsoft.Diagnostics.Runtime.ClrHeap,System.String)">
+ <summary>Goes thru all addresses of a runtime heap
+ and reads object types.</summary>
+ <param name="runtime">Instance of Microsoft.Diagnostics.RuntimeClrRuntime.</param>
+ <returns>Error string if fails, null otherwise.</returns>
+</member>
+<member name="M:DmpNdxQueries.SpecializedQueries.getConcurrentDictionaryFieldInfo(Microsoft.Diagnostics.Runtime.ClrHeap,Microsoft.Diagnostics.Runtime.ClrType,System.UInt64)">
+ <summary>
+ Get all references of WeakReference instances.
+ </summary>
+ <param name="heap">MDR heap.</param>
+ <param name="addresses">Addresses of WeakReference instances</param>
+ <param name="m_handle">Instance of m_handle field.</param>
+ <param name="m_value">Instance of m_value field (from System.IntPtr type).</param>
+ <returns></returns>
+</member>
+<member name="M:DmpNdxQueries.CollectionContent.getSortedDictionaryInfo(Microsoft.Diagnostics.Runtime.ClrHeap,System.UInt64)">
+<summary>
+ return error, description, count, root type, root address, root left field, root right field, key field, value field
+</summary>
+</member>
+</members>
+</doc>

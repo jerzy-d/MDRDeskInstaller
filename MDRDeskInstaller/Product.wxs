@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="MDRDeskInstaller" Language="1033" Version="1.0.0.0" Manufacturer="" UpgradeCode="141ba750-3792-4b27-a0ce-4733df1c4169">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<Product Id="*" Name="MDRDesk" Language="1033" Version="0.6.1.13" Manufacturer="JRD" UpgradeCode="141ba750-3792-4b27-a0ce-4733df1c4169">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
-
-		<Feature Id="ProductFeature" Title="MDRDeskInstaller" Level="1">
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <WixVariable Id="WixUIDialogBmp" Value="data\CalleSegovias2.bmp" />
+    <!--<WixVariable Id="WixUIInfoIco" Value="data\appbar32.bmp" />
+    <WixVariable Id="WixUINewIco" Value="data\appbar16.bmp" />
+    <WixVariable Id="WixUIUpIco" Value="data\appbar16.bmp" />-->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+    <UIRef Id="WixUI_Advanced"/>
+    <Property Id="ApplicationFolderName" Value="MDRDesk" />
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+    <WixVariable Id="WixUI_InstallDir" Value="INSTALLFOLDER"/>
+    <SetProperty Id="ARPINSTALLLOCATION" Value="[ApplicationFolder]" After="CostFinalize" />
+		<!--<Feature Id="ProductFeature" Title="MDRDesk Installer" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
-		</Feature>
+		</Feature>-->
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="MDRDeskInstaller" />
-			</Directory>
+			<!--<Directory Id="ProgramFiles64Folder">-->
+				<Directory Id="INSTALLFOLDER" Name="MDRDesk" />
+          <Directory Id="DocsDir" Name="documentation"></Directory>
+          <Directory Id="MDRDeskDir" Name="MDRDesk">
+            <Component Id="MDRDeskexe" Guid="{AAFBA534-D55F-43CC-A5AF-2356B046C253}">
+              <File Name="MDRDesk.exe"/>
+            </Component>
+            <Component Id="MDRDesk32exe" Guid="{622D554F-DA26-44E4-A18A-FA42D3C873BD}" >
+              <File Name="MDRDesk32.exe"/>
+            </Component>
+          </Directory>
+          <!--<Directory Id="DumpsDir" Name="dumps"></Directory>
+          <Directory Id="DacsDir" Name="mscordacwks"></Directory>-->
+  		<!--</Directory>-->
 		</Directory>
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
+			 <!--<Component Id="ProductComponent" Directory="MDRDeskDir">-->
+				 <!--TODO: Insert files, registry keys, and other resources here.-->
+         <ComponentRef Id="MDRDeskexe"/>
+         <ComponentRef Id="MDRDesk32exe"/>
+       <!--</Component>--> 
 		</ComponentGroup>
 	</Fragment>
 </Wix>
